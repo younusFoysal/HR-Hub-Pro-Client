@@ -93,20 +93,23 @@ const SignUp = () => {
             console.log(result)
 
             const role = "employee"
-            const photo = result.photoURL
+            const name = result.user.displayName
+            const photo = result.user.photoURL
             const bankaccount = null
             const salary = null
             const designation = null
 
+
             await saveUser(
                 result.user,
+                name,
                 role,
                 bankaccount,
                 salary,
                 designation,
                 photo
             )
-            console.log(saveUser)
+            //console.log(saveUser)
             navigate('/')
             toast.success('Signup Successful')
         } catch (err) {

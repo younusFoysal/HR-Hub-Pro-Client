@@ -3,13 +3,16 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 import useAuth from "../../../hooks/useAuth.js";
 import {Helmet} from "react-helmet-async";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import {Link} from "react-router-dom";
+import toast from 'react-hot-toast'
 
 const EmployeeList = () => {
 
     const axiosSecure = useAxiosSecure()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
+    const { user: loggedInUser } = useAuth()
 
     //   Fetch Employees
     const {
@@ -24,6 +27,44 @@ const EmployeeList = () => {
             return data
         },
     })
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async verify => {
+            const { data } = await axiosSecure.patch(
+                `/users/update/${verify.email}`,
+                verify
+            );
+            console.log(verify)
+            return data;
+        },
+        onSuccess: data => {
+            refetch();
+            toast.success('Employee status updated successfully');
+        },
+        onError: error => {
+            toast.error(`Failed to update status: ${error.message}`);
+        }
+    });
+
+    // verification toggle
+    const handleVerificationToggle = async (email, isVerified) => {
+        if (loggedInUser.email === email) {
+            return toast.error('Action Not Allowed');
+        }
+
+        const userVerify = {
+            email,
+            isVerfied: !isVerified,
+        };
+        console.log(userVerify)
+
+        try {
+            await mutateAsync(userVerify);
+        } catch (err) {
+            console.log(err);
+            toast.error(err.message);
+        }
+    };
 
     if (isLoading) return <LoadingSpinner />
 
@@ -43,15 +84,15 @@ const EmployeeList = () => {
                     </th>
                     <th scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Title
+                        Bank Account Num
                     </th>
                     <th scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Status
+                        Verified
                     </th>
                     <th scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Role
+                        Salary
                     </th>
                     <th scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -74,33 +115,40 @@ const EmployeeList = () => {
                                 </div>
                                 <div className="ml-4">
                                     <div className="text-sm font-medium text-gray-900">
-                                        name
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                        jane.cooper@example.com
+                                        {employee.name}
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">Regional Paradigm Technician</div>
-                            <div className="text-sm text-gray-500">Optimization</div>
+                            <div className="text-sm text-gray-900">{employee.bankaccount}</div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                <span
-                    className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                </span>
+                            <button
+                                className={`btn btn-sm inline-flex text-xs hover:-translate-y-1 hover:shadow-gray-400 hover:shadow-xl leading-5 font-semibold
+                                 rounded bg-${employee.isVerfied ? 'green' : 'red'}-100 text-${employee.isVerfied ? 'green' : 'red'}-800`}
+                                onClick={() => handleVerificationToggle(employee.email, employee.isVerfied)}
+                            >
+                                {employee.isVerfied===true ? "✅" : "❌"}
+                            </button>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Admin
+                            {employee.salary ? "$ " + employee.salary : "Update your Profile"}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            jane.cooper@example.com
+                            {employee.email}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                            <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            <a href="#" className="ml-2 text-red-600 hover:text-red-900">Delete</a>
+                            <a href="#" className="btn btn-sm px-2 inline-flex text-xs hover:-translate-y-0.5 hover:shadow-gray-400 hover:shadow-xl leading-5 font-semibold rounded bg-green-100 text-green-800">
+                                Pay
+                            </a>
+
+                            <Link to={`/dashboard/details/${employee.email}`}>
+                            <div className="btn btn-sm ml-2 text-red-600 hover:-translate-y-0.5 hover:shadow-gray-400 hover:shadow-xl hover:text-red-900 px-2 inline-flex text-xs leading-5 font-semibold rounded bg-red-100">
+                                Details
+                            </div>
+                            </Link>
+
                         </td>
                     </tr>)
                 }

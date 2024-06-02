@@ -31,7 +31,7 @@ const Navbar = () => {
                         </Link>
 
 
-                        <div className=" sm:flex sm:justify-center lg:justify-start">
+                        <div className=" sm:flex sm:justify-center lg:justify-start p-4">
 
 
                             {user ? <Link to='/dashboard'>

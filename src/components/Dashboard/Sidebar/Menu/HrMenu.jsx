@@ -1,4 +1,5 @@
 import { BsFingerprint } from 'react-icons/bs'
+import { CiViewList } from "react-icons/ci";
 import { GrUserAdmin } from 'react-icons/gr'
 import { useState } from 'react'
 import MenuItem from './/MenuItem'
@@ -42,11 +43,21 @@ const HrMenu = () => {
     }
     return (
         <>
+
             <MenuItem
                 icon={BsFingerprint}
                 label='Employee Llist'
                 address='employee-list'
             />
+            <MenuItem
+                icon={CiViewList}
+                label='Work Records'
+                address='progress'
+            />
+
+
+
+
 
         </>
     )
