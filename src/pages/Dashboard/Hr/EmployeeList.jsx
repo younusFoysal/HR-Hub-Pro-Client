@@ -6,13 +6,23 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 import toast from 'react-hot-toast'
+import PayModal from "../../../components/Modal/PayModal.jsx";
 
 const EmployeeList = () => {
 
     const axiosSecure = useAxiosSecure()
     const [loading, setLoading] = useState(false)
-    const { user } = useAuth()
     const { user: loggedInUser } = useAuth()
+    const [isOpen, setIsOpen] = useState(false)
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
 
     //   Fetch Employees
     const {
@@ -67,6 +77,10 @@ const EmployeeList = () => {
     };
 
     if (isLoading) return <LoadingSpinner />
+
+
+    // TODO: Payment Modal
+
 
 
 
@@ -139,9 +153,110 @@ const EmployeeList = () => {
                             {employee.email}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                            <a href="#" className="btn btn-sm px-2 inline-flex text-xs hover:-translate-y-0.5 hover:shadow-gray-400 hover:shadow-xl leading-5 font-semibold rounded bg-green-100 text-green-800">
+                            <button
+                                onClick={openModal}
+                                className="btn btn-sm px-2 inline-flex text-xs hover:-translate-y-0.5 hover:shadow-gray-400 hover:shadow-xl leading-5 font-semibold rounded bg-green-100 text-green-800">
                                 Pay
-                            </a>
+                            </button>
+                            {/*<PayModal*/}
+                            {/*    isOpen={isOpen}*/}
+                            {/*    refetch={refetch}*/}
+                            {/*    closeModal={closeModal}*/}
+                            {/*    payInfo={{*/}
+                            {/*        ...employee,*/}
+                            {/*        salary: employee.salary,*/}
+                            {/*        employee: {*/}
+                            {/*            name: employee.name,*/}
+                            {/*            email: employee.email*/}
+                            {/*        }*/}
+                            {/*    }}*/}
+
+                            {/*/>*/}
+
+
+                            {isOpen && (
+                                <div className="fixed z-10 inset-0 overflow-y-auto">
+                                    <div className="flex items-center justify-center min-h-screen">
+                                        <div className="bg-white w-1/2 p-6 rounded shadow-md">
+                                            <div className="flex justify-end">
+                                                {/* Close Button */}
+                                                <button
+                                                    onClick={closeModal}
+                                                    className="text-gray-700 hover:text-red-500"
+                                                >
+                                                    <svg
+                                                        className="w-6 h-6"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="M6 18L18 6M6 6l12 12"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+
+                                            <form>
+                                                <div className="mb-4">
+                                                    <label
+                                                        htmlFor="name"
+                                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                                    >
+                                                        Name
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        id="name"
+                                                        name="name"
+                                                        className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label
+                                                        htmlFor="email"
+                                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                                    >
+                                                        Email
+                                                    </label>
+                                                    <input
+                                                        type="email"
+                                                        id="email"
+                                                        name="email"
+                                                        className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                                    />
+                                                </div>
+                                                <div className="mb-4">
+                                                    <label
+                                                        htmlFor="message"
+                                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                                    >
+                                                        Message
+                                                    </label>
+                                                    <textarea
+                                                        id="message"
+                                                        name="message"
+                                                        className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                                    ></textarea>
+                                                </div>
+                                                <button
+                                                    type="submit"
+                                                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
+                                                >
+                                                    Send Message
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+
 
                             <Link to={`/dashboard/details/${employee.email}`}>
                             <div className="btn btn-sm ml-2 text-red-600 hover:-translate-y-0.5 hover:shadow-gray-400 hover:shadow-xl hover:text-red-900 px-2 inline-flex text-xs leading-5 font-semibold rounded bg-red-100">
