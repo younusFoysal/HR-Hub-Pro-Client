@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 import useAuth from "../../../hooks/useAuth.js";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
 import {useQuery} from "@tanstack/react-query";
+
 
 const PaymentHistory = () => {
 
@@ -45,7 +46,7 @@ const PaymentHistory = () => {
                     <div className="border rounded-lg divide-y divide-gray-200 ">
 
                         <div className="overflow-hidden">
-                            <table className="min-w-full divide-y divide-gray-200 ">
+                            <table id="example" className="min-w-full divide-y divide-gray-200 ">
                                 <thead className="bg-gray-50 ">
                                 <tr>
                                     <th scope="col"
