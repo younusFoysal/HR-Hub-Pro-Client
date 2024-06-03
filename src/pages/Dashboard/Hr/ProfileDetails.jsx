@@ -4,17 +4,41 @@ import avatar from '../../../assets/images/avatar.png'
 import toast from "react-hot-toast";
 import { PureComponent } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, Cell } from 'recharts';
+import {useQuery} from "@tanstack/react-query";
+import {axiosSecure} from "../../../hooks/useAxiosSecure.jsx";
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 const ProfileDetails = () => {
 
-    const data = [
+    const datao = [
         { name: 'OCT \'23', value: 110 },
         { name: 'NOV \'23', value: 100 },
         { name: 'DEC \'23', value: 105 },
         { name: 'JAN \'24', value: 150 },
     ];
+
+
+    const dataw = [
+        { name: "JUN '24", salary: 200 },
+        { name: "JUL '24", salary: 200 }
+    ];
+
+    const dataq = [
+        {
+            "month": 6,
+            "year": 2024,
+            salary: 200
+        },
+        {
+            "month": 5,
+            "year": 2024,
+            salary: 200
+        }
+    ];
+
+
+
 
 
     const {
@@ -31,6 +55,17 @@ const ProfileDetails = () => {
         isVerified
     } = useLoaderData()
     //console.log(user)
+
+    const {
+        data = [],
+        isLoading
+    } = useQuery({
+        queryKey: ['salarysummary', email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/salarysummary/${email}`)
+            return data
+        },
+    })
 
     if (!designation){
         toast((t) => (
@@ -78,21 +113,21 @@ const ProfileDetails = () => {
 
                 <div>
 
-                    <BarChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 20}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="name" label={{value: 'Month', position: 'insideBottom', offset: -10}}/>
+                    <BarChart width={600} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 20 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" label={{ value: 'Month', position: 'insideBottom', offset: -10 }} />
                         <YAxis
-                            label={{value: 'Salary', angle: -90, position: 'insideLeft'}}
+                            label={{ value: 'Salary ($)', angle: -90, position: 'insideLeft' }}
                             tickFormatter={(value) => `$${value}`}
                         />
-                        <Tooltip formatter={(value) => `$${value}`}/>
-
-                        <Bar dataKey="value" barSize={60}>
-                            <Cell fill="#00C49F"/> {/* Green */}
-                            <Cell fill="#FF8042"/> {/* Orange */}
-                            <Cell fill="#FFBB28"/> {/* Yellow */}
-                            <Cell fill="#00C1F4"/> {/* Blue */}
-                            <LabelList dataKey="value" position="top" formatter={(value) => `$${value}`}/>
+                        <Tooltip formatter={(value) => `$${value}`} />
+                        {/*<Legend />*/}
+                        <Bar dataKey="salary" barSize={60}>
+                            <Cell fill="#00C49F" />  {/* Green */}
+                            <Cell fill="#FF8042" />  {/* Orange */}
+                            <Cell fill="#FFBB28" />  {/* Yellow */}
+                            <Cell fill="#00C1F4" />  {/* Blue */}
+                            <LabelList dataKey="salary" position="top" formatter={(value) => `$${value}`} />
                         </Bar>
                     </BarChart>
 
