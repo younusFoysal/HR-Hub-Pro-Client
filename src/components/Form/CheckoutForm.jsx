@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import {useQuery} from "@tanstack/react-query";
 
 const CheckoutForm = ({selectedEmployee, refetch, closeModal}) => {
 
@@ -34,6 +35,24 @@ const CheckoutForm = ({selectedEmployee, refetch, closeModal}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedEmployee?.salary])
 
+
+    // get employee paid salary months years
+    const {
+        data: salarymonthyear = [],
+        isLoading
+    } = useQuery({
+        queryKey: ['salarymonthyear', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/salarymonthyear/${selectedEmployee?.email}`)
+            return data
+        },
+    })
+
+
+    // /salarymonthyear/:email
+
+    console.log(salarymonthyear)
+
     const handleSubmit = async event => {
         // Block native form submission.
         event.preventDefault()
@@ -43,7 +62,12 @@ const CheckoutForm = ({selectedEmployee, refetch, closeModal}) => {
         const month = Number(form.month.value)
         const year =  Number(form.year.value)
 
+        const date = {month, year}
+        const dateExists = salarymonthyear.some(salary => salary.month === date.month && salary.year === date.year);
 
+        if (dateExists){
+            return toast.error("You can't pay twice for the same month/year!")
+        }
 
         setProcessing(true)
         if (!stripe || !elements) {
