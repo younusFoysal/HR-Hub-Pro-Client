@@ -11,6 +11,7 @@ import WorkSheet from "../pages/Dashboard/Employee/WorkSheet.jsx";
 import EmployeeList from "../pages/Dashboard/Hr/EmployeeList.jsx";
 import ProfileDetails from "../pages/Dashboard/Hr/ProfileDetails.jsx";
 import WorkRecords from "../pages/Dashboard/Hr/WorkRecords.jsx";
+import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory.jsx";
 
 
 export const router = createBrowserRouter([
@@ -44,11 +45,16 @@ export const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
             },
+            // Employee Routes
             {
                 path: 'work-sheet',
                 element: <WorkSheet></WorkSheet>
             },
-
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            // HR Routes
             {
                 path: "employee-list",
                 element: <EmployeeList></EmployeeList>
@@ -62,6 +68,7 @@ export const router = createBrowserRouter([
                 path: "progress",
                 element: <WorkRecords></WorkRecords>
             }
+            // Admin Routes
 
         ],
     },
