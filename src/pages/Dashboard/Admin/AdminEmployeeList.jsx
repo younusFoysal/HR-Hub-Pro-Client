@@ -8,7 +8,6 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
 import Swal from 'sweetalert2';
 import TableView from './TableView';
 import CardGridView from './CardGridView';
-// import './AdminEmployeeList.css'; // Import overall styling if needed
 
 const AdminEmployeeList = () => {
     const axiosSecure = useAxiosSecure();
@@ -133,7 +132,7 @@ const AdminEmployeeList = () => {
                 <title>Employee List | Admin Dashboard</title>
             </Helmet>
 
-            <div className="relative rounded-lg animated-background bg-gradient-to-tr from-indigo-600 via-indigo-700 to-violet-800">
+            <div className="relative rounded-lg animated-background bg-gradient-to-tr from-indigo-600 via-indigo-700 to-violet-800 min-h-screen">
                 <div className="flex flex-col gap-4 justify-center items-center w-full h-full px-3 md:px-0">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                         Admin Portal
@@ -147,7 +146,7 @@ const AdminEmployeeList = () => {
                     >
                         {isTableView ? "Switch to Card View" : "Switch to Table View"}
                     </button>
-                    <div className="shadow-lg rounded-lg overflow-hidden m-3 md:mx-4">
+                    <div className="shadow-lg rounded-lg overflow-hidden m-3 md:mx-4 w-full">
                         {isTableView ? (
                             <TableView
                                 employees={employees}
