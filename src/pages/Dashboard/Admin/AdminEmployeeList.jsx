@@ -33,7 +33,7 @@ const AdminEmployeeList = () => {
         },
         onSuccess: data => {
             refetch();
-            toast.success('Employee status updated successfully');
+            toast.success('Employee data updated successfully');
         },
         onError: error => {
             toast.error(`Failed to update status: ${error.message}`);
@@ -114,6 +114,54 @@ const AdminEmployeeList = () => {
 
     }
 
+
+    // Adjust Salary
+    const handleAdjustSalary = async (email, salary) => {
+
+
+        const inputValue = salary
+
+
+        const { value } = await Swal.fire({
+            title: "Enter Salary",
+            input: "number",
+            inputLabel: `Employee Salary is: $ ${inputValue}`,
+            inputValue,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "You need to write a number!";
+                }else {
+                    if (value < inputValue){
+                        return "Only increasing of salary is Allowed!";
+                    }
+                }
+            }
+        });
+        // console.log(value)
+        if (value) {
+            Swal.fire(`Employee Salary is $ ${value}`);
+            console.log(value)
+
+            const newSalary = Number(value)
+
+
+            const userSalary = {
+                email,
+                salary: newSalary,
+            };
+
+            try {
+                await mutateAsync(userSalary);
+                // toast.success("Salary Updated!")
+            } catch (err) {
+                toast.error(err.message);
+            }
+
+        }
+
+    }
+
     if (isLoading) return <LoadingSpinner />;
 
 
@@ -167,10 +215,17 @@ const AdminEmployeeList = () => {
                                     </td>
                                     <td className="py-4 px-6 border-b border-gray-200">
                                         <button
+                                            onClick={() => handleAdjustSalary(employee.email, employee.salary)}
+                                            disabled={employee.isFired === true ? "disabled" : ""}
+                                            className="btn btn-sm mr-2 bg-green-500 text-white py-1 px-2 rounded text-xs disabled:text-black disabled:font-bold">
+                                            Adjust Salary
+                                        </button>
+
+                                        <button
                                             onClick={() => handleFire(employee.email, employee.isFired)}
-                                            disabled={employee.isFired===true ? "disabled" : ""}
+                                            disabled={employee.isFired === true ? "disabled" : ""}
                                             className="btn btn-sm bg-red-500 text-white py-1 px-2 rounded text-xs disabled:text-black disabled:font-bold">
-                                            {employee.isFired===true ? "Fired" : "Fire"}
+                                            {employee.isFired === true ? "Fired" : "Fire"}
                                         </button>
                                     </td>
                                 </tr>)
