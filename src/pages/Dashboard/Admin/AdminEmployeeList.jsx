@@ -72,7 +72,11 @@ const AdminEmployeeList = () => {
             confirmButtonText: "Yes, Fire Employee!"
         }).then((result) => {
             if (result.isConfirmed) {
-                const userFire = { email, isFired: !isFired };
+                const userFire = {
+                    email,
+                    isFired: !isFired,
+                    role: ""
+                };
 
                 try {
                     call(userFire);
