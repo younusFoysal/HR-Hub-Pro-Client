@@ -27,7 +27,7 @@ const EmployeeList = () => {
                 toast.error("Unverified Employee! Verify first.")
             }
         } else {
-            toast.error("Inform Admin to update the employee salary.")
+            toast.error("Inform Employee to update profile and add salary.")
         }
     };
 

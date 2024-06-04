@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 import useAuth from "../../../hooks/useAuth.js";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {Helmet} from "react-helmet-async";
+import toast from "react-hot-toast";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
 
 const AdminEmployeeList = () => {
 
@@ -23,7 +25,45 @@ const AdminEmployeeList = () => {
     });
 
 
+    const { mutateAsync } = useMutation({
+        mutationFn: async role => {
+            const { data } = await axiosSecure.patch(`/users/update/${role.email}`, role);
+            return data;
+        },
+        onSuccess: data => {
+            refetch();
+            toast.success('Employee status updated successfully');
+        },
+        onError: error => {
+            toast.error(`Failed to update status: ${error.message}`);
+        }
+    });
 
+    // Verification toggle
+    const handleRoleToggle = async (email, role) => {
+        if (loggedInUser.email === email) {
+            return toast.error('Action Not Allowed');
+        }
+
+        if (role==="hr") {
+            role = "employee"
+        }else if (role==="employee") {
+            role = "hr"
+        }
+
+        const userRole = {
+            email,
+            role: role,
+        };
+
+        try {
+            await mutateAsync(userRole);
+        } catch (err) {
+            toast.error(err.message);
+        }
+    };
+
+    if (isLoading) return <LoadingSpinner />;
 
 
 
@@ -66,7 +106,7 @@ const AdminEmployeeList = () => {
                                         <button
                                             className={`btn btn-sm inline-flex text-xs hover:-translate-y-1 hover:shadow-gray-400 hover:shadow-xl leading-5 font-semibold
                                     rounded bg-${employee.isVerfied ? 'green' : 'red'}-100 text-${employee.isVerfied ? 'green' : 'red'}-800`}
-                                            onClick={() => handleVerificationToggle(employee.email, employee.isVerfied)}
+                                            onClick={() => handleRoleToggle(employee.email, employee.role)}
                                         >
                                             {employee.role==="hr" ? "Make Employee" : "Make HR"}
                                         </button>
