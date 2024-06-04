@@ -10,16 +10,12 @@ import { NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { Link } from 'react-router-dom'
 import useRole from '../../../hooks/useRole'
-//import MenuItem from './Menu/MenuItem'
-//import HostMenu from './Menu/HostMenu'
-//import AdminMenu from './Menu/AdminMenu'
-//import GuestMenu from './Menu/GuestMenu'
-//import ToggleBtn from '../../Shared/Button/ToggleBtn'
 import logo from '../../../assets/images/logo.png'
 import MenuItem from "./Menu/MenuItem.jsx";
 import AdminMenu from "./Menu/AdminMenu.jsx";
 import EmployeeMenu from "./Menu/EmployeeMenu.jsx";
 import HrMenu from "./Menu/HrMenu.jsx";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Sidebar = () => {
     const { logOut } = useAuth()
@@ -103,9 +99,15 @@ const Sidebar = () => {
                 </div>
 
                 <div>
-                    <hr />
+                    <hr className="bg-lime-400 h-1" />
 
                     {/* Profile Menu */}
+
+                    <MenuItem
+                        label='Update Profile'
+                        address='/dashboard/profile'
+                        icon={FaRegUserCircle}
+                    />
 
 
                     <button

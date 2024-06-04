@@ -13,6 +13,7 @@ import ProfileDetails from "../pages/Dashboard/Hr/ProfileDetails.jsx";
 import WorkRecords from "../pages/Dashboard/Hr/WorkRecords.jsx";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory.jsx";
 import AdminEmployeeList from "../pages/Dashboard/Admin/AdminEmployeeList.jsx";
+import Profile from "../pages/Dashboard/Common/Profile.jsx";
 
 
 export const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
                         <Statistics />
                     </PrivateRoute>
                 ),
+            },
+            {
+                path: 'profile',
+                element: <Profile></Profile>
             },
             // Employee Routes
             {
