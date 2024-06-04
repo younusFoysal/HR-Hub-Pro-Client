@@ -76,6 +76,7 @@ const AuthProvider = ({ children }) => {
             designation: designation,
             photo: photo,
             isVerfied: false,
+            isFired: false
 
         }
         const { data } = await axios.put(

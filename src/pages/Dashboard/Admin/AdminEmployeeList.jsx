@@ -5,6 +5,7 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import {Helmet} from "react-helmet-async";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner.jsx";
+import Swal from 'sweetalert2'
 
 const AdminEmployeeList = () => {
 
@@ -39,7 +40,7 @@ const AdminEmployeeList = () => {
         }
     });
 
-    // Verification toggle
+    // Role toggle
     const handleRoleToggle = async (email, role) => {
         if (loggedInUser.email === email) {
             return toast.error('Action Not Allowed');
@@ -63,7 +64,59 @@ const AdminEmployeeList = () => {
         }
     };
 
+
+    // Fire employee
+    const handleFire = async (email, isFired) => {
+
+        if (loggedInUser.email === email) {
+            return toast.error('Action Not Allowed');
+        }
+
+
+
+        const call= async (userFire) => {
+            await mutateAsync(userFire);
+        }
+
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Fire Employee!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                const userFire = {
+                    email,
+                    isFired: !isFired,
+                };
+
+                try {
+                    call(userFire);
+                } catch (err) {
+                    toast.error(err.message);
+                }
+
+
+                Swal.fire({
+                    title: "Fired!",
+                    text: "Employee has been Fired.",
+                    icon: "success"
+                });
+            }
+        });
+
+
+    }
+
     if (isLoading) return <LoadingSpinner />;
+
+
 
 
 
@@ -114,7 +167,10 @@ const AdminEmployeeList = () => {
                                     </td>
                                     <td className="py-4 px-6 border-b border-gray-200">
                                         <button
-                                            className="btn btn-sm bg-red-500 text-white py-1 px-2 rounded text-xs">Fire
+                                            onClick={() => handleFire(employee.email, employee.isFired)}
+                                            disabled={employee.isFired===true ? "disabled" : ""}
+                                            className="btn btn-sm bg-red-500 text-white py-1 px-2 rounded text-xs disabled:text-black disabled:font-bold">
+                                            {employee.isFired===true ? "Fired" : "Fire"}
                                         </button>
                                     </td>
                                 </tr>)
