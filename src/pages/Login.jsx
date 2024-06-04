@@ -19,7 +19,8 @@ const Login = () => {
         loading,
         setLoading,
         resetPassword,
-        saveUser
+        saveUser,
+        logOut
     } = useAuth()
     const [email, setEmail] = useState('')
     const axiosCommon = useAxiosCommon();
@@ -95,6 +96,7 @@ const Login = () => {
 
             if (refetchedData.isFired===true){
                 setLoading(false)
+                logOut();
                 return toast.error("You are Fired! You can't Login.")
             }else {
                 const role = "employee"
@@ -116,13 +118,13 @@ const Login = () => {
 
 
                 navigate(from)
-                toast.success('Signup Successful')
+                toast.success('Login Successful')
             }
 
 
         } catch (err) {
             console.log(err)
-            toast.error(err.message)
+            toast.error(err.message, "Try Again.")
         }
     }
 

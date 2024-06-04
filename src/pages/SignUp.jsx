@@ -6,6 +6,8 @@ import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { imageUpload } from '../api/utils'
 import { useState } from 'react'
+import {axiosCommon} from "../hooks/useAxiosCommon.jsx";
+import {useQuery} from "@tanstack/react-query";
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -15,10 +17,24 @@ const SignUp = () => {
         updateUserProfile,
         loading,
         setLoading,
-        saveUser
+        saveUser,
+        logOut
     } = useAuth()
 
     const [selectedRole, setSelectedRole] = useState('')
+    const [email, setEmail] = useState('')
+
+    // Fetch Employees
+    const { data: userL = [], isLoading, refetch } = useQuery({
+        queryKey: ['userIsFired', email],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get(`/user/${email}`);
+            console.log("Email:", email);
+            return data;
+        },
+    });
+
+    console.log("Outside", userL)
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -92,6 +108,18 @@ const SignUp = () => {
             const result = await signInWithGoogle()
             console.log(result)
 
+            const email = result.user.email
+            setEmail(email)
+
+            const {data: refetchedData} = await refetch();
+            console.log("Inside Function:", email, refetchedData);
+
+
+            if (refetchedData.isFired===true){
+                setLoading(false)
+                logOut();
+                return toast.error("You are Fired! You can't Login.")
+            }else {
             const role = "employee"
             const name = result.user.displayName
             const photo = result.user.photoURL
@@ -112,6 +140,9 @@ const SignUp = () => {
             //console.log(saveUser)
             navigate('/')
             toast.success('Signup Successful')
+
+        }
+
         } catch (err) {
             console.log(err)
             toast.error(err.message)
