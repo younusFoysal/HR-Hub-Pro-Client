@@ -132,7 +132,9 @@ const AdminEmployeeList = () => {
                 <title>Employee List | Admin Dashboard</title>
             </Helmet>
 
-            <div className="relative rounded-lg animated-background bg-gradient-to-tr from-indigo-600 via-indigo-700 to-violet-800 min-h-screen">
+
+
+            <div className="relative rounded-lg animated-background bg-gradient-to-tr from-lime-600 via-lime-700 to-green-800 min-h-screen">
                 <div className="flex flex-col gap-4 justify-center items-center w-full h-full px-3 md:px-0">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                         Admin Portal
@@ -141,7 +143,7 @@ const AdminEmployeeList = () => {
                         Manage All Employees
                     </p>
                     <button
-                        className="btn btn-primary mb-2"
+                        className="btn btn-success bg-lime-300 mb-2"
                         onClick={() => setIsTableView(!isTableView)}
                     >
                         {isTableView ? "Switch to Card View" : "Switch to Table View"}
