@@ -4,14 +4,39 @@ import useAuth from '../hooks/useAuth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from 'react'
+import {useQuery} from "@tanstack/react-query";
+import {axiosSecure} from "../hooks/useAxiosSecure.jsx";
+import axios from "axios";
+import useAxiosCommon from "../hooks/useAxiosCommon.jsx";
 
 const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state || '/'
-    const { signInWithGoogle, signIn, loading, setLoading, resetPassword, saveUser } =
-        useAuth()
+    const {
+        signInWithGoogle,
+        signIn,
+        loading,
+        setLoading,
+        resetPassword,
+        saveUser
+    } = useAuth()
     const [email, setEmail] = useState('')
+    const axiosCommon = useAxiosCommon();
+
+
+    // Fetch Employees
+    const { data: userL = [], isLoading, refetch } = useQuery({
+        queryKey: ['userIsFired', email],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get(`/user/${email}`);
+            console.log("Email:", email);
+            return data;
+        },
+    });
+
+    console.log("Outside", userL)
+
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -21,10 +46,19 @@ const Login = () => {
 
         try {
             setLoading(true)
-            // 1. sign in user
-            await signIn(email, password)
-            navigate(from)
-            toast.success('Signup Successful')
+
+
+            if (userL.isFired===true){
+                setLoading(false)
+                return toast.error("You are Fired! You can't Login.")
+            }else {
+                // 1. sign in user
+                await signIn(email, password)
+                navigate(from)
+                toast.success('Signup Successful')
+            }
+
+
         } catch (err) {
             console.log(err)
             toast.error(err.message)
@@ -50,26 +84,42 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle()
+            console.log(result)
 
-            const role = "employee"
-            const photo = result.photoURL
-            const bankaccount = null
-            const salary = null
-            const designation = null
+            const email = result.user.email
+            setEmail(email)
 
-            await saveUser(
-                result.user,
-                role,
-                bankaccount,
-                salary,
-                designation,
-                photo
-            )
-            console.log(saveUser)
+            const { data: refetchedData } = await refetch();
+            console.log("Inside Function:", email, refetchedData);
 
 
-            navigate(from)
-            toast.success('Signup Successful')
+            if (refetchedData.isFired===true){
+                setLoading(false)
+                return toast.error("You are Fired! You can't Login.")
+            }else {
+                const role = "employee"
+                const name = result.user.displayName
+                const photo = result.user.photoURL
+                const bankaccount = null
+                const salary = null
+                const designation = null
+
+                await saveUser(
+                    result.user,
+                    name,
+                    role,
+                    bankaccount,
+                    salary,
+                    designation,
+                    photo
+                )
+
+
+                navigate(from)
+                toast.success('Signup Successful')
+            }
+
+
         } catch (err) {
             console.log(err)
             toast.error(err.message)
