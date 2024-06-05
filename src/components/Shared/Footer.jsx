@@ -1,6 +1,7 @@
 import React from 'react';
 
 import logo from '../../assets/images/logo.png'
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -11,9 +12,11 @@ const Footer = () => {
                         className="grid grid-cols-1 min-[1130px]:grid-cols-12 gap-8 lg:gap-0 pb-14 border-b-2 border-gray-200">
                         <div className="min-[1130px]:col-span-5 col-span-1 w-full min-[1130px]:max-w-full mx-auto">
                             <div className="flex flex-col max-sm:items-center gap-8 w-full ">
-                                <a href="https://pagedone.io/" className="py-1.5 ">
+                                <Link to="/">
+                                <div  className="py-1.5 ">
                                     <img width="150" src={logo} />
-                                </a>
+                                </div>
+                                </Link>
                                 <div className="flex flex-col min-[470px]:flex-row items-center gap-3 w-full">
                                     <div className="relative  text-gray-500 focus-within:text-gray-900 max-sm:w-full">
                                         <div
@@ -31,7 +34,8 @@ const Footer = () => {
                                                placeholder="mail@hrhub.com"/>
                                     </div>
                                     <button
-                                        className="py-3 px-7 rounded-lg bg-sky-800 max-[470px]:w-full text-base font-semibold text-white transition-all duration-500 hover:bg-sky-900">Subscribe
+                                        className="py-3 px-7 rounded-lg bg-green-500 max-[470px]:w-full text-base font-semibold text-white transition-all duration-500 hover:bg-green-600">
+                                        Subscribe
                                     </button>
                                 </div>
                             </div>
@@ -39,7 +43,7 @@ const Footer = () => {
                         <div
                             className="min-[1130px]:col-span-7 max-[1130px]:pt-10 lg:pl-14 col-span-1 w-full min-[1130px]:max-w-full mx-auto flex flex-col sm:flex-row justify-between gap-6 ">
                             <div className="">
-                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-lime-400">Address</h6>
+                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-green-500">Address</h6>
                                 <ul className="flex flex-col gap-6">
                                     <li><p href=""
                                            className="text-base font-normal max-sm:text-center  text-gray-600">
@@ -59,7 +63,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                             <div className="">
-                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-lime-400">Contact</h6>
+                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-green-500">Contact</h6>
                                 <ul className="flex flex-col gap-6">
                                     <li><p href="javascript:;"
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap">
@@ -72,7 +76,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                             <div className="">
-                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-lime-400">Office</h6>
+                                <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-green-500">Office</h6>
                                 <ul className="flex flex-col gap-6">
                                     <li><p href="javascript:;"
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap ">Monday
