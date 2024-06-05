@@ -29,7 +29,7 @@ const ContactUs = () => {
         const minutes = String(gmt6Date.getUTCMinutes()).padStart(2, '0');
         const ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
+        hours = hours ? hours : 12;
         const formattedHours = String(hours).padStart(2, '0');
         const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
 
@@ -41,7 +41,7 @@ const ContactUs = () => {
 
     const axiosCommon = useAxiosCommon()
 
-    //   Fetch work Data
+    //   Fetch msg Data
     const { mutateAsync } = useMutation({
         mutationFn: async workData => {
             const { data } = await axiosCommon.post(`/contact`, workData)
