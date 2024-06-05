@@ -4,6 +4,7 @@ import Services from "../components/Home/Services.jsx";
 import Devider from "../components/Home/Devider.jsx";
 import Testimonials from "../components/Home/Testimonials.jsx";
 import Why from "../components/Home/Why.jsx";
+import CallToAction from "../components/Home/CallToAction.jsx";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <Why></Why>
             <Devider></Devider>
             <Testimonials></Testimonials>
+            <CallToAction></CallToAction>
         </div>
     )
 }

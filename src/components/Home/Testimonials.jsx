@@ -42,10 +42,10 @@ const Testimonials = () => {
                 <div className="relative mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col items-center">
                         <div className="text-center">
-                            <p className="text-lg font-medium text-green-500">
+                            <p className="text-lg font-medium text-green-700">
                                 What clients say about their experience with us
                             </p>
-                            <h2 className="mt-4 text-3xl font-bold text-green-600 sm:text-4xl xl:text-5xl">
+                            <h2 className="mt-4 text-3xl font-bold text-green-800 sm:text-4xl xl:text-5xl">
                                 Client Testimonials
                             </h2>
                         </div>

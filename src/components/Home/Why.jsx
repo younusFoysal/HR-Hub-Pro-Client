@@ -4,7 +4,7 @@ const Why = () => {
     return (
         <div>
 
-            <section className="mx-auto max-w-screen-xl py-12 text-green-600 sm:py-16 lg:py-20">
+            <section className="mx-auto max-w-screen-xl py-6 text-green-600 sm:py-8 lg:py-10">
                 <div className="mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl text-center">
                         <p className="text-sm font-medium text-green-700">INTRODUCING</p>
