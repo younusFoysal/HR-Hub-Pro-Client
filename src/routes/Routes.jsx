@@ -14,6 +14,7 @@ import WorkRecords from "../pages/Dashboard/Hr/WorkRecords.jsx";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory.jsx";
 import AdminEmployeeList from "../pages/Dashboard/Admin/AdminEmployeeList.jsx";
 import Profile from "../pages/Dashboard/Common/Profile.jsx";
+import ContactUs from "../components/Home/ContactUS.jsx";
 
 
 export const router = createBrowserRouter([
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
                 path: '/',
                 element: <Home />,
             },
+            {
+                path: '/contact-us',
+                element: <ContactUs />
+            }
 
         ],
     },

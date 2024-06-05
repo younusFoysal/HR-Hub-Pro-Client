@@ -1,6 +1,98 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {FaMapLocation} from "react-icons/fa6";
+import {useMutation} from "@tanstack/react-query";
+import useAxiosCommon from "../../hooks/useAxiosCommon.jsx";
+import toast from "react-hot-toast";
+import LoadingSpinner from "../Shared/LoadingSpinner.jsx";
 
 const ContactUs = () => {
+
+    const [loading, setLoading] = useState(false)
+    const [currentDate, setCurrentDate] = useState('');
+    const [currentTime, setCurrentTime] = useState('');
+
+    useEffect(() => {
+        const now = new Date();
+
+        // Convert to GMT+6
+        const gmt6Offset = 6 * 60 * 60 * 1000;
+        const gmt6Date = new Date(now.getTime() + gmt6Offset);
+
+        // Format date as YYYY-MM-DD
+        const year = gmt6Date.getUTCFullYear();
+        const month = String(gmt6Date.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(gmt6Date.getUTCDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        // Format time as HH:MM AM/PM
+        let hours = gmt6Date.getUTCHours();
+        const minutes = String(gmt6Date.getUTCMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
+
+        // Set the formatted date and time
+        setCurrentDate(formattedDate);
+        setCurrentTime(formattedTime);
+    }, []);
+
+
+    const axiosCommon = useAxiosCommon()
+
+    //   Fetch work Data
+    const { mutateAsync } = useMutation({
+        mutationFn: async workData => {
+            const { data } = await axiosCommon.post(`/contact`, workData)
+            return data
+        },
+        onSuccess: () => {
+            console.log('Data Saved Successfully')
+            toast.success('Message sent Successfully!')
+            setLoading(false)
+        },
+    })
+
+
+    const handleContact = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+
+        const form = e.target
+
+        const name = form.name.value
+        const email = form.email.value
+        const message = form.message.value
+        const date = form.date.value
+        const time = form.time.value
+
+        console.log()
+
+        try {
+            const msgData = {
+                name,
+                email,
+                message,
+                date,
+                time
+            }
+            console.log(msgData)
+
+            //   Post request to server
+            await mutateAsync(msgData)
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+            setLoading(false)
+        }
+
+
+    }
+
+    if (loading) return toast("Wait...Message is sending...")
+
+
     return (
         <div>
             <div className="container mt-20 mx-auto px-2 md:px-4">
@@ -21,35 +113,65 @@ const ContactUs = () => {
 
                     <div className="flex flex-wrap">
 
-                        <form className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
+                        <form
+                            onSubmit={handleContact}
+                            className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
 
                             <div className="mb-3 w-full">
-                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="exampleInput90">
+                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="name">
                                     Name
                                 </label>
-                                <input type="text" className="px-2 py-2 border w-full outline-none rounded-md"
-                                       id="exampleInput90" placeholder="Name"/>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    autoComplete="name"
+                                    className="px-2 py-2 border w-full outline-none rounded-md"
+                                    id="name"
+                                    required
+                                    placeholder="Name"
+                                />
                             </div>
 
                             <div className="mb-3 w-full">
-                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="exampleInput90">
+                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="email">
                                     Email
                                 </label>
-                                <input type="email" className="px-2 py-2 border w-full outline-none rounded-md"
-                                       id="exampleInput90"
-                                       placeholder="Enter your email address"/>
+                                <input
+                                    type="email"
+                                    autoComplete="email"
+                                    className="px-2 py-2 border w-full outline-none rounded-md"
+                                    id="email"
+                                    placeholder="Enter your email address"
+                                    required
+                                />
                             </div>
 
                             <div className="mb-3 w-full">
-                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="exampleInput90">
+                                <label className="block font-medium mb-[2px] text-teal-700" htmlFor="message">
                                     Message
                                 </label>
-                                <textarea className="px-2 py-2 border rounded-[5px] w-full outline-none" name=""
-                                          id=""></textarea>
+                                <textarea
+                                    className="px-2 py-2 border rounded-[5px] w-full outline-none"
+                                    name="message"
+                                    id="message"
+                                    required
+                                ></textarea>
                             </div>
+                            <input
+                                type="date"
+                                name="date"
+                                hidden
+                                value={currentDate}
+                            />
+                            <input
+                                type="text"
+                                name="time"
+                                hidden
+                                value={currentTime}
+                            />
 
-                            <button type="button"
-                                    className="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500">
+                            <button type="submit"
+                                    className="mb-6 inline-block w-full rounded bg-green-500 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-green-700">
                                 Send
                             </button>
 
@@ -73,10 +195,10 @@ const ContactUs = () => {
                                                 Technical support
                                             </p>
                                             <p className="text-neutral-500 ">
-                                                support@example.com
+                                                support@hrhub.com
                                             </p>
                                             <p className="text-neutral-500 ">
-                                                +1 234-567-89
+                                                +1 234-567-87
                                             </p>
                                         </div>
                                     </div>
@@ -97,10 +219,10 @@ const ContactUs = () => {
                                                 Sales questions
                                             </p>
                                             <p className="text-neutral-500 ">
-                                                sales@example.com
+                                                sales@hrhub.com
                                             </p>
                                             <p className="text-neutral-500 ">
-                                                +1 234-567-89
+                                                +1 234-567-88
                                             </p>
                                         </div>
                                     </div>
@@ -109,20 +231,18 @@ const ContactUs = () => {
                                     <div className="align-start flex">
                                         <div className="shrink-0">
                                             <div className="inline-block rounded-md bg-teal-400-100 p-4 text-teal-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="2" stroke="currentColor" className="h-6 w-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>
-                                                </svg>
+                                                <FaMapLocation></FaMapLocation>
                                             </div>
                                         </div>
                                         <div className="ml-6 grow">
-                                            <p className="mb-2 font-bold ">Press</p>
+                                            <p className="mb-2 font-bold ">Address</p>
                                             <p className="text-neutral-500 ">
-                                                press@example.com
+                                                California, Pleasanton, USA
+
                                             </p>
+                                            <br/>
                                             <p className="text-neutral-500 ">
-                                                +1 234-567-89
+                                                Ontario 705 Cotton Mill Street, Canada
                                             </p>
                                         </div>
                                     </div>
@@ -143,10 +263,10 @@ const ContactUs = () => {
                                                 Bug report
                                             </p>
                                             <p className="text-neutral-500 ">
-                                                bugs@example.com
+                                                bugs@hrhub.com
                                             </p>
                                             <p className="text-neutral-500">
-                                                +1 234-567-89
+                                                +1 234-567-90
                                             </p>
                                         </div>
                                     </div>

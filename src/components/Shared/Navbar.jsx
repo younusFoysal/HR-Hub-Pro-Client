@@ -45,7 +45,7 @@ const Navbar = () => {
                                 ""}
 
 
-                            <Link to='/contact'>
+                            <Link to='/contact-us'>
                                 <div className="mt-3 sm:mt-0 sm:ml-3">
                                     <div className="w-full flex items-center justify-center px-4 py-2 text-sm leading-5 font-medium rounded-md text-green-700 dark:text-green-700 bg-green-100 hover:bg-green-50 hover:text-green-600 focus:ring ring-offset-2 ring-green-100 focus:outline-none transition duration-150 ease-in-out md:py-2 md:text-sm md:px-6">
                                         Contact Us
