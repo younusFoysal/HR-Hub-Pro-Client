@@ -54,7 +54,7 @@ const PaymentHistory = () => {
     let num = 1;
 
     return (
-        <div className="-m-1.5 overflow-x-auto">
+        <div className="m-1.5 overflow-x-auto">
             <div className="p-1.5 min-w-full inline-block align-middle">
                 <div className="border rounded-lg divide-y divide-gray-200">
                     <div className="overflow-hidden">
