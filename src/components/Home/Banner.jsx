@@ -29,12 +29,12 @@ const Banner = () => {
                                     Welcome to HR Hub
                                 </p>
                             </div>
-                            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-white sm:text-5xl sm:leading-snug">
+                            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-green-800 sm:text-5xl sm:leading-snug">
                                 Effortlessly Manage Your Global
 
                                 <span className="inline-block text-green-500"> Employee Data</span>
                             </h2>
-                            <p className="text-base text-green-50 md:text-lg">
+                            <p className="text-base text-green-800 md:text-lg">
                                 Manage your global workforce with a flexible, cloud-based employee database management
                                 system.
                             </p>
