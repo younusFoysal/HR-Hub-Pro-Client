@@ -5,6 +5,8 @@ import Devider from "../components/Home/Devider.jsx";
 import Testimonials from "../components/Home/Testimonials.jsx";
 import Why from "../components/Home/Why.jsx";
 import CallToAction from "../components/Home/CallToAction.jsx";
+import Newslatter from "../components/Home/Newslatter.jsx";
+import ContactUS from "../components/Home/ContactUS.jsx";
 
 
 const Home = () => {
@@ -19,6 +21,7 @@ const Home = () => {
             <Devider></Devider>
             <Testimonials></Testimonials>
             <CallToAction></CallToAction>
+            <ContactUS></ContactUS>
         </div>
     )
 }

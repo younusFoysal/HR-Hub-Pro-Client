@@ -6,12 +6,12 @@ import {Link} from "react-router-dom";
 const Footer = () => {
     return (
         <div>
-            <section className="pt-16 pb-7 ">
+            <section className="pt-10 pb-7 ">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div
-                        className="grid grid-cols-1 min-[1130px]:grid-cols-12 gap-8 lg:gap-0 pb-14 border-b-2 border-gray-200">
+                        className="grid grid-cols-1 min-[1130px]:grid-cols-12 gap-8 lg:gap-0 py-14 border-y-2 border-gray-200">
                         <div className="min-[1130px]:col-span-5 col-span-1 w-full min-[1130px]:max-w-full mx-auto">
-                            <div className="flex flex-col max-sm:items-center gap-8 w-full ">
+                            <div className="flex flex-col max-sm:items-center gap-2 w-full ">
                                 <Link to="/">
                                 <div  className="py-1.5 ">
                                     <img width="150" src={logo} />
@@ -34,7 +34,7 @@ const Footer = () => {
                                                placeholder="mail@hrhub.com"/>
                                     </div>
                                     <button
-                                        className="py-3 px-7 rounded-lg bg-green-500 max-[470px]:w-full text-base font-semibold text-white transition-all duration-500 hover:bg-green-600">
+                                        className="py-3 px-7 rounded-lg max-[470px]:w-full text-base font-semibold duration-500 bg-green-700 hover:bg-green-800 text-white transition hover:translate-y-1">
                                         Subscribe
                                     </button>
                                 </div>
@@ -65,10 +65,10 @@ const Footer = () => {
                             <div className="">
                                 <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-green-500">Contact</h6>
                                 <ul className="flex flex-col gap-6">
-                                    <li><p href="javascript:;"
+                                    <li><p
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap">
                                         +91 945 658 3256</p></li>
-                                    <li><p href="javascript:;"
+                                    <li><p
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap ">
                                         support@hrhub.com</p>
                                     </li>
@@ -78,11 +78,11 @@ const Footer = () => {
                             <div className="">
                                 <h6 className="text-lg font-medium text-gray-900 mb-7 max-sm:text-center border-b-2 border-green-500">Office</h6>
                                 <ul className="flex flex-col gap-6">
-                                    <li><p href="javascript:;"
+                                    <li><p
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap ">Monday
                                         - Friday</p>
                                     </li>
-                                    <li><p href="javascript:;"
+                                    <li><p
                                            className="text-base font-normal max-sm:text-center text-gray-600 whitespace-nowrap">9AM
                                         - 7PM</p></li>
 
