@@ -136,7 +136,7 @@ const AdminEmployeeList = () => {
 
             <div className="relative rounded-lg animated-background bg-gradient-to-tr from-lime-600 via-lime-700 to-green-800 min-h-screen">
                 <div className="flex flex-col gap-4 justify-center items-center w-full h-full px-3 md:px-0">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+                    <h1 className=" mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                         Admin Portal
                     </h1>
                     <p className="text-gray-300">
