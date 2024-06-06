@@ -65,6 +65,7 @@ const Login = () => {
         } catch (err) {
             console.log(err)
             toast.error(err.message)
+            toast("Try Again Login!")
             setLoading(false)
         }
     }
@@ -126,7 +127,9 @@ const Login = () => {
 
         } catch (err) {
             console.log(err)
-            toast.error(err.message, "Try Again.")
+            toast.error(err.message)
+            toast("Try Again Login!")
+            setLoading(false)
         }
     }
 
