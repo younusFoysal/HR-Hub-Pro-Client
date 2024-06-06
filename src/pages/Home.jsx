@@ -6,6 +6,7 @@ import Testimonials from "../components/Home/Testimonials.jsx";
 import Why from "../components/Home/Why.jsx";
 import CallToAction from "../components/Home/CallToAction.jsx";
 import ContactUS from "../components/Home/ContactUS.jsx";
+import BackToTop from "../components/Home/BackToTop.jsx";
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
             <Testimonials></Testimonials>
             <CallToAction></CallToAction>
             <ContactUS></ContactUS>
+            <BackToTop></BackToTop>
         </div>
     )
 }

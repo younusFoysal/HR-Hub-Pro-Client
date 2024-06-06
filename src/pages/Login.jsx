@@ -8,6 +8,8 @@ import {useQuery} from "@tanstack/react-query";
 import {axiosSecure} from "../hooks/useAxiosSecure.jsx";
 import axios from "axios";
 import useAxiosCommon from "../hooks/useAxiosCommon.jsx";
+import {SiSpinnaker, SiSpinrilla} from "react-icons/si";
+import {CgSpinner} from "react-icons/cg";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -130,7 +132,7 @@ const Login = () => {
 
     return (
         <div className='flex justify-center items-center min-h-screen'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 shadow-2xl shadow-gray-500'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Log In</h1>
                     <p className='text-sm text-gray-400'>
@@ -153,7 +155,7 @@ const Login = () => {
                                 id='email'
                                 required
                                 placeholder='Enter Your Email Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
                             />
                         </div>
@@ -170,7 +172,7 @@ const Login = () => {
                                 id='password'
                                 required
                                 placeholder='*******'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                             />
                         </div>
                     </div>
@@ -179,10 +181,10 @@ const Login = () => {
                         <button
                             disabled={loading}
                             type='submit'
-                            className='bg-rose-500 w-full rounded-md py-3 text-white'
+                            className='bg-green-500 w-full rounded-md py-3 text-white shadow-xl duration-200 hover:scale-105 hover:shadow-2xl'
                         >
                             {loading ? (
-                                <TbFidgetSpinner className='animate-spin m-auto' />
+                                    <SiSpinrilla className='animate-spin m-auto' />
                             ) : (
                                 'Sign In'
                             )}
@@ -192,7 +194,7 @@ const Login = () => {
                 <div className='space-y-1'>
                     <button
                         onClick={handleResetPassword}
-                        className='text-xs hover:underline hover:text-rose-500 text-gray-400'
+                        className='text-xs hover:underline hover:text-green-500 text-gray-400'
                     >
                         Forgot password?
                     </button>
@@ -208,7 +210,7 @@ const Login = () => {
                 <button
                     disabled={loading}
                     onClick={handleGoogleSignIn}
-                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer shadow-xl duration-200 hover:scale-105 hover:shadow-2xl'
                 >
                     <FcGoogle size={32} />
 
@@ -219,7 +221,7 @@ const Login = () => {
                     Don&apos;t have an account yet?{' '}
                     <Link
                         to='/signup'
-                        className='hover:underline hover:text-rose-500 text-gray-600'
+                        className='hover:underline hover:text-green-500 text-gray-600'
                     >
                         Sign up
                     </Link>
