@@ -41,7 +41,7 @@ const CheckoutForm = ({selectedEmployee, refetch, closeModal}) => {
         data: salarymonthyear = [],
         isLoading
     } = useQuery({
-        queryKey: ['salarymonthyear', user?.email],
+        queryKey: ['salarymonthyear', selectedEmployee?.email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/salarymonthyear/${selectedEmployee?.email}`)
             return data
