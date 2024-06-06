@@ -119,7 +119,7 @@ const EmployeeStatistics = () => {
                             <div
                                 className="w-full rounded-[25px] bg-white/10 mb-3 p-8 shadow-xl backdrop-blur-lg transition duration-200 hover:scale-105 hover:shadow-xl hover:bg-white/15 ">
                                 <div className="h-12">
-                                    <FaMoneyCheckDollar  className="text-5xl text-white"></FaMoneyCheckDollar >
+                                    <FaMoneyCheckDollar className="text-5xl text-white"></FaMoneyCheckDollar>
                                 </div>
                                 <div className="my-2">
                                     <h2 className="text-4xl font-bold text-white"><span>{estat.totalsalary}</span>+</h2>
@@ -137,7 +137,7 @@ const EmployeeStatistics = () => {
                             <div
                                 className="w-full rounded-[25px] bg-white/10 mb-3 p-8 shadow-xl backdrop-blur-lg transition duration-200 hover:scale-105 hover:shadow-xl hover:bg-white/15 ">
                                 <div className="h-12">
-                                    <MdWorkHistory  className="text-5xl text-white"></MdWorkHistory >
+                                    <MdWorkHistory className="text-5xl text-white"></MdWorkHistory>
                                 </div>
                                 <div className="my-2">
                                     <h2 className="text-4xl font-bold text-white"><span>{estat.totalwhrs}</span>+</h2>
@@ -155,7 +155,7 @@ const EmployeeStatistics = () => {
                         </div>
 
                         <div className="bg-white rounded-xl mt-8">
-                        {/*    Chart Start*/}
+                            {/*    Chart Start*/}
 
                             <BarChart
                                 width={500}
@@ -168,30 +168,32 @@ const EmployeeStatistics = () => {
                                     bottom: 5,
                                 }}
                             >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="Works" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Bar dataKey="TotalWorks" fill="blue" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                                <Bar dataKey="TotalWorkHrs" fill="orange" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="Works"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend/>
+                                <Bar dataKey="TotalWorks" fill="blue"
+                                     activeBar={<Rectangle fill="pink" stroke="blue"/>}/>
+                                <Bar dataKey="TotalWorkHrs" fill="orange"
+                                     activeBar={<Rectangle fill="gold" stroke="purple"/>}/>
                             </BarChart>
 
-                        {/*    Chart End */}
+                            {/*    Chart End */}
                         </div>
 
-                        <div className="flex gap-6 mt-10">
+                        <div className="flex flex-col gap-6 mt-10 md:flex-row md:gap-4 md:mt-4">
 
 
                             {/*    Weather */}
-                            <div className="h-full">
+                            <div className="h-full flex-1 p-4 md:p-6">
                                 <ReactWeather
                                     isLoading={isLoading}
                                     errorMessage={errorMessage}
                                     data={data}
                                     lang="en"
                                     locationLabel="Chittagong"
-                                    unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
+                                    unitsLabels={{temperature: 'C', windSpeed: 'Km/h'}}
                                     showForecast
                                 />
                             </div>
@@ -199,7 +201,7 @@ const EmployeeStatistics = () => {
 
 
                             {/*    Calender start*/}
-                            <div>
+                            <div className="flex-1 p-4 md:p-6">
                                 <div
                                     className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
                                     <Calendar color='green'/>
