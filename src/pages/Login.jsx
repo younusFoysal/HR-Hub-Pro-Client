@@ -132,7 +132,7 @@ const Login = () => {
 
     return (
         <div className='flex justify-center items-center min-h-screen'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 shadow-2xl shadow-gray-500'>
+            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 shadow-2xl shadow-gray-500 duration-500 hover:scale-105'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Log In</h1>
                     <p className='text-sm text-gray-400'>
@@ -210,7 +210,7 @@ const Login = () => {
                 <button
                     disabled={loading}
                     onClick={handleGoogleSignIn}
-                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer shadow-xl duration-200 hover:scale-105 hover:shadow-2xl'
+                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer duration-200 hover:scale-105 hover:shadow-2xl'
                 >
                     <FcGoogle size={32} />
 

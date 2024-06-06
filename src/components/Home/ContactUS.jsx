@@ -171,7 +171,7 @@ const ContactUs = () => {
                             />
 
                             <button type="submit"
-                                    className="mb-6 inline-block w-full rounded bg-green-500 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-green-700">
+                                    className="mb-6 inline-block w-full rounded bg-green-500 px-6 py-2.5 font-medium uppercase leading-normal text-white shadow-lg hover:bg-green-700 transition duration-500 hover:scale-105 hover:shadow-xl">
                                 Send
                             </button>
 

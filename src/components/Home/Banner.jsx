@@ -43,14 +43,14 @@ const Banner = () => {
                             className="flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 lg:justify-start">
                             <Link to="/login">
                             <div
-                               className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green-500 px-6 font-medium tracking-wide text-white shadow-md outline-none transition duration-200 hover:bg-green-400 focus:ring sm:w-auto">
+                               className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green-500 px-6 font-medium tracking-wide text-white shadow-md outline-none transition  duration-200 hover:scale-105 hover:shadow-2xl hover:bg-green-400 focus:ring sm:w-auto">
 
                                 Login Now </div>
                             </Link>
 
                             <Link to="/signup">
                             <div
-                               className="inline-flex h-12 w-full items-center justify-center rounded-full border-2 border-green-500 px-4 font-semibold text-green-600 transition-colors duration-200 hover:bg-green-300 hover:border-green-700 hover:text-green-700 sm:w-auto">
+                               className="inline-flex h-12 w-full items-center justify-center rounded-full border-2 border-green-500 px-4 font-semibold text-green-600 transition duration-500 hover:scale-105 hover:shadow-xl hover:bg-green-200 hover:border-green-700 hover:text-green-700 sm:w-auto">
                                 Register</div>
                             </Link>
                         </div>

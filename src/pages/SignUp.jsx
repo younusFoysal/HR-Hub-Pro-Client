@@ -8,6 +8,7 @@ import { imageUpload } from '../api/utils'
 import { useState } from 'react'
 import {axiosCommon} from "../hooks/useAxiosCommon.jsx";
 import {useQuery} from "@tanstack/react-query";
+import {SiSpinrilla} from "react-icons/si";
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -155,7 +156,7 @@ const SignUp = () => {
 
     return (
         <div className='flex justify-center items-center min-h-screen'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900 shadow-2xl shadow-gray-500 duration-500 hover:scale-105'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
                     <p className='text-sm text-gray-400'>Welcome to HR Hub</p>
@@ -171,7 +172,7 @@ const SignUp = () => {
                             <div className='group w-full'>
                                 <button
                                     type='button'
-                                    className='inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-white bg-lime-500 hover:bg-lime-700 focus:outline-none focus:bg-lime-700'
+                                    className='inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:bg-lime-700 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 >
                                     {selectedRole ? selectedRole : 'Select Role'}
                                     <svg
@@ -198,7 +199,7 @@ const SignUp = () => {
                                         </a>
                                         <a
                                             href='#'
-                                            className='w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                            className='w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '
                                             onClick={() => handleRoleSelect('hr')}
                                         >
                                             HR
@@ -218,7 +219,7 @@ const SignUp = () => {
                                 name='name'
                                 id='name'
                                 placeholder='Enter Your Name Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
                                 required
                             />
@@ -233,7 +234,7 @@ const SignUp = () => {
                                 name='bankaccount'
                                 id='accountNum'
                                 placeholder='Enter Your Bank Account Number'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
                                 required
                             />
@@ -248,7 +249,7 @@ const SignUp = () => {
                                 name='salary'
                                 id='salary'
                                 placeholder='Enter Your salary Ammount Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
                                 required
                             />
@@ -263,7 +264,7 @@ const SignUp = () => {
                                 name='designation'
                                 id='designation'
                                 placeholder='Ex: Sales Assistant, Social Media executive, Digital Marketer'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
                                 required
                             />
@@ -275,6 +276,7 @@ const SignUp = () => {
                                 Select Image:
                             </label>
                             <input
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 required
                                 type='file'
                                 id='image'
@@ -292,7 +294,7 @@ const SignUp = () => {
                                 id='email'
                                 required
                                 placeholder='Enter Your Email Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                                 data-temp-mail-org='0'
 
                             />
@@ -310,7 +312,7 @@ const SignUp = () => {
                                 id='password'
                                 required
                                 placeholder='*******'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-green-500 bg-gray-200 text-gray-900 shadow-lg duration-200 hover:scale-105 hover:shadow-2xl'
                             />
                         </div>
                     </div>
@@ -319,10 +321,10 @@ const SignUp = () => {
                         <button
                             disabled={loading}
                             type='submit'
-                            className='bg-rose-500 w-full rounded-md py-3 text-white'
+                            className='bg-green-500 w-full rounded-md py-3 text-white shadow-xl duration-200 hover:scale-105 hover:shadow-2xl'
                         >
                             {loading ? (
-                                <TbFidgetSpinner className='animate-spin m-auto'/>
+                                <SiSpinrilla className='animate-spin m-auto'/>
                             ) : (
                                 'Continue'
                             )}
@@ -339,7 +341,7 @@ const SignUp = () => {
                 <button
                     disabled={loading}
                     onClick={handleGoogleSignIn}
-                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer duration-200 hover:scale-105 hover:shadow-2xl'
                 >
                     <FcGoogle size={32}/>
                     <p>Continue with Google</p>
@@ -348,7 +350,7 @@ const SignUp = () => {
                     Already have an account?{' '}
                     <Link
                         to='/login'
-                        className='hover:underline hover:text-rose-500 text-gray-600'
+                        className='hover:underline hover:text-green-500 text-gray-600'
                     >
                         Login
                     </Link>
