@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
             {
                 path: 'details/:email',
                 element: <HrRoute><ProfileDetails></ProfileDetails></HrRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/user/${params.email}`)
+                loader: ({params}) => fetch(`https://hr-hub-server.vercel.app/user/${params.email}`)
             },
             {
                 path: "progress",
