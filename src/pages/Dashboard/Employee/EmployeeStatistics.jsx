@@ -25,7 +25,7 @@ const EmployeeStatistics = () => {
 
 
     const { data, errorMessage } = useVisualCrossing({
-        key: 'Y4J6ZZRHPXAC8L59VZUQQWBXW',
+        key: import.meta.env.VITE_WEATHER_API_KEY,
         lat: '22.3357194',
         lon: '91.8001583',
         lang: 'en',
