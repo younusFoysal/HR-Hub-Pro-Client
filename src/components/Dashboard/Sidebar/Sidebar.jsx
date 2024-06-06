@@ -51,9 +51,10 @@ const Sidebar = () => {
 
                 <button
                     onClick={handleToggle}
-                    className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+                    className='mobile-menu-button fixed bottom-0 right-0 z-[9999] p-4 focus:outline-none focus:bg-gray-200 bg-white rounded-full'
+                    style={{zIndex: 9999}} // Ensuring high z-index
                 >
-                    <AiOutlineBars className='h-5 w-5' />
+                    <AiOutlineBars className='h-5 w-5'/>
                 </button>
             </div>
 

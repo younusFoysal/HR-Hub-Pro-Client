@@ -177,11 +177,11 @@ const AdminStatistics = () => {
                             {/*    Chart End */}
                         </div>
 
-                        <div className="flex gap-6 mt-10">
+                        <div className="flex flex-col gap-6 mt-10 md:flex-row md:gap-4 md:mt-4">
 
 
                             {/*    Weather */}
-                            <div className="h-full">
+                            <div className="h-full flex-1 p-4 md:p-6">
                                 <ReactWeather
                                     isLoading={isLoading}
                                     errorMessage={errorMessage}
@@ -196,7 +196,7 @@ const AdminStatistics = () => {
 
 
                             {/*    Calender start*/}
-                            <div>
+                            <div className="flex-1 p-4 md:p-6">
                                 <div
                                     className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
                                     <Calendar color='green'/>
