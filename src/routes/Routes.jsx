@@ -16,6 +16,8 @@ import AdminEmployeeList from "../pages/Dashboard/Admin/AdminEmployeeList.jsx";
 import Profile from "../pages/Dashboard/Common/Profile.jsx";
 import ContactUs from "../components/Home/ContactUS.jsx";
 import Messages from "../pages/Dashboard/Admin/Messages.jsx";
+import HrRoute from "./HrRoute.jsx";
+import AdminRoute from "./AdminRoute.jsx";
 
 
 export const router = createBrowserRouter([
@@ -55,39 +57,39 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'profile',
-                element: <Profile></Profile>
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
             },
             // Employee Routes
             {
                 path: 'work-sheet',
-                element: <WorkSheet></WorkSheet>
+                element: <PrivateRoute><WorkSheet></WorkSheet></PrivateRoute>
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             },
             // HR Routes
             {
                 path: "employee-list",
-                element: <EmployeeList></EmployeeList>
+                element: <HrRoute><EmployeeList></EmployeeList></HrRoute>
             },
             {
                 path: 'details/:email',
-                element: <ProfileDetails></ProfileDetails>,
+                element: <HrRoute><ProfileDetails></ProfileDetails></HrRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/user/${params.email}`)
             },
             {
                 path: "progress",
-                element: <WorkRecords></WorkRecords>
+                element: <HrRoute><WorkRecords></WorkRecords></HrRoute>
             },
             // Admin Routes
             {
                 path: 'all-employee-list',
-                element: <AdminEmployeeList></AdminEmployeeList>
+                element: <AdminRoute><AdminEmployeeList></AdminEmployeeList></AdminRoute>
             },
             {
                 path: 'all-messages',
-                element: <Messages></Messages>
+                element: <AdminRoute><Messages></Messages></AdminRoute>
             }
 
         ],
