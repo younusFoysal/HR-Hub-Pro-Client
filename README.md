@@ -1,4 +1,4 @@
-# HR Hub
+# HR Hub Pro
 
 ## Assignment_ID: assignment12_category_0005
 
@@ -22,10 +22,12 @@
 * Admin, HR, Employee can update their Own profile.
 
 
+
 > [!NOTE]
 > After new registration, Employee will be marked as **Unverified** by default.
-> Only **HR** can **verify** Employees and mark him/her **verified** Employee.
+> Only **HR** can **verify** Employees and mark him/her **verified**.
 > Only **Admin** can make the **verified Employee** to HR.
+
 
 
 > [!IMPORTANT]
