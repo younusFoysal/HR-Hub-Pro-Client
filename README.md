@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img src="public/Screenshot.png" alt="Hr Hub Pro">
+  <img src="public/hrHubPro.gif" alt="Hr Hub Pro">
 </p>
 <br>
 
