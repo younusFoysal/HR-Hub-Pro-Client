@@ -1,5 +1,11 @@
-# HR Hub Pro
 
+<h1 align="center">HR Hub Pro </h1>
+
+
+<p align="center">
+  <img src="public/Screenshot.png" alt="Hr Hub Pro">
+</p>
+<br>
 
 
 ## Live Link:
