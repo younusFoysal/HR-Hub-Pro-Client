@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img src="public/hrHubPro.gif" alt="Hr Hub Pro">
+  <img src="https://github.com/younusFoysal/HR-Hub-Pro-Client/blob/main/public/hrHubPro.gif" alt="Hr Hub Pro">
 </p>
 <br>
 
