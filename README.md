@@ -1,24 +1,26 @@
 # HR Hub Pro
 
-## Assignment_ID: assignment12_category_0005
+
 
 ## Live Link:
 
- [https://hr-hub-pro.web.app/](https://hr-hub-pro.web.app/) 
+ [https://hr-hub-pro.web.app](https://hr-hub-pro.web.app) 
+
+## Overview:
 
 
 ## Features: 
-* Users can SignUp as an Employee or HR.
+* Users can Sign Up as an Employee or HR.
 * Employees can watch their works. 
 * They can analysis their work speed by Total Works/Hour chart.
-* Theres a record of all works and working hours.
+* There's a record of all works and working hours.
 * HR can mark Employees as Verified or unverified.
 * HR can also see Employees work progress.
 * HR can Pay the Employees by Card. (Use Stripe demo card)
 * Admin can promote Only verified Employees to HR.
 * Admin can adjust the salary of Employees.
-* Admin can fire any Employee or HR. After Fired, that user can't login in the app.
-* Statistics Page has a Weather Widget and a Calender Widget.
+* Admin can fire any Employee or HR. After Fired, that user can't log in in the app.
+* Statistics Page has a Weather Widget and a Calendar Widget.
 * Admin, HR, Employee can update their Own profile.
 
 
