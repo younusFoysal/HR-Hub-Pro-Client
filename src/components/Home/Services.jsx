@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FaList} from "react-icons/fa";
 import {AiOutlineDatabase, AiOutlineSafety} from "react-icons/ai";
 import {MdMobileFriendly, MdOutlineSettingsSuggest} from "react-icons/md";
 import {LuUserSquare} from "react-icons/lu";
 import {PiVideoConferenceDuotone} from "react-icons/pi";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Services = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Set the animation duration in milliseconds
+            easing: 'ease-in-out', // You can choose the easing option you prefer
+            once: true, // Animation will only run once
+        });
+    }, []);
+
     return (
         <div>
 
@@ -19,7 +30,8 @@ const Services = () => {
                 </div>
 
                 <div className="grid gap-10 pb-20 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-right">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">
@@ -30,7 +42,7 @@ const Services = () => {
                         </div>
                         <p className="text-gray-700">Increase employee data visibility across regions.</p>
                     </div>
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-right">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">
@@ -43,7 +55,7 @@ const Services = () => {
                             Guarantee secure data management and employee privacy.
                         </p>
                     </div>
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-right">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">
@@ -54,7 +66,7 @@ const Services = () => {
                         </div>
                         <p className="text-gray-700">Customize and manage your workforce in your preferred way.</p>
                     </div>
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-left">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">
@@ -65,7 +77,7 @@ const Services = () => {
                         </div>
                         <p className="text-gray-700">Empower your employees with self-service portals.</p>
                     </div>
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-left">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">
@@ -76,7 +88,7 @@ const Services = () => {
                         </div>
                         <p className="text-gray-700">Access your database quickly and easily from your mobile device.</p>
                     </div>
-                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="rounded-md border border-gray-200 bg-white p-8 shadow-sm hover:bg-green-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-left">
                         <div className="my-4 flex items-center">
                             <div
                                 className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg border bg-green-100 text-2xl text-green-500">

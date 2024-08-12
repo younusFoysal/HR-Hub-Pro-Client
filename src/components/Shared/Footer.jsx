@@ -14,7 +14,7 @@ const Footer = () => {
                             <div className="flex flex-col max-sm:items-center gap-2 w-full ">
                                 <Link to="/">
                                 <div  className="py-1.5 ">
-                                    <img width="150" src={logo} />
+                                    <img width="150" src={logo} className="duration-500  hover:scale-110 hover:shadow-lg rounded-lg" />
                                 </div>
                                 </Link>
                                 <div className="flex flex-col min-[470px]:flex-row items-center gap-3 w-full">

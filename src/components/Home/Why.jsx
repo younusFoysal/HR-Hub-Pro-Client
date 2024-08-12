@@ -1,6 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Why = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Set the animation duration in milliseconds
+            easing: 'ease-in-out', // You can choose the easing option you prefer
+            once: true, // Animation will only run once
+        });
+    }, []);
+
     return (
         <div>
 
@@ -14,7 +25,7 @@ const Why = () => {
 
                     <div
                         className="agrid-rows-[repeat(2,_minmax(1px,fit-content))] mt-10 grid grid-cols-1 gap-10 text-center sm:mx-auto sm:max-w-sm md:mt-20 md:h-[68rem] md:max-w-full md:grid-cols-2 md:grid-rows-5 md:text-left ">
-                        <div className="row-span-3 bg-green-200 md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl">
+                        <div className="row-span-3 bg-green-200 md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl" data-aos="fade-up-right">
                             <img className="h mx-auto object-contain md:ml-0" src="https://i.ibb.co/2jb05K9/y4-CZSruo-Lg-Kd-A6-Y6mz-Qn-T.png"
                                  alt=""/>
                             <div className="">
@@ -27,7 +38,7 @@ const Why = () => {
                             </div>
                         </div>
 
-                        <div className="row-span-2 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl">
+                        <div className="row-span-2 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl" data-aos="fade-up-left">
                             <div className="">
                                 <h3 className="text-4xl">Get advantage over others</h3>
                                 <p className="mt-6 text-base">Energistically maximize multidisciplinary customer service after open-source expertise.</p>
@@ -38,7 +49,7 @@ const Why = () => {
                             </div>
                         </div>
 
-                        <div className="row-span-3 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl">
+                        <div className="row-span-3 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl" data-aos="fade-up-left">
                             <img className="mx-auto object-contain md:ml-0" src="https://i.ibb.co/VHP8V7D/6-SD-s9-Dep-Fa-NBNOe-FKeo-G.png"
                                  alt=""/>
                             <div className="">
@@ -51,7 +62,7 @@ const Why = () => {
                             </div>
                         </div>
 
-                        <div className="row-span-2 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl">
+                        <div className="row-span-2 bg-green-200 md:flex md:flex-col md:justify-center md:px-8 transition duration-500 hover:scale-105 hover:shadow-xl" data-aos="fade-up-right">
                             <div className="">
                                 <h3 className="text-4xl">Improve Customer Loyalty</h3>
                                 <p className="mt-6 text-base">Dynamically pursue real-time total linkage with dynamic web-readiness.</p>

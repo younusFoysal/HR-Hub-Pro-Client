@@ -56,6 +56,7 @@ const AuthProvider = ({ children }) => {
             photoURL: photo,
         })
     }
+
     // Get token from server
     const getToken = async email => {
         const { data } = await axios.post(
