@@ -25,7 +25,7 @@ const Services = () => {
                     <h2 className="mx-auto text-4xl font-bold md:text-5xl">Our Services</h2>
                     <div
                         className="mx-auto mt-6 mb-auto block w-full text-xl font-normal leading-9 text-gray-700 md:w-3/4 xl:w-3/4">
-                        <p className="text-lg">Divide your workforce into departments, locations, and job roles. Set the foundation for error-free management, from payroll and admin actions to performance and development.</p>
+                        <p className="text-lg">Divide Your Workforce Into Departments, Locations, and Job Roles. Set the foundation for error-free management, from payroll and admin actions to performance and development.</p>
                     </div>
                 </div>
 
