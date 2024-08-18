@@ -69,6 +69,6 @@ sweetalert2
     ```
 5. Browse the application at:
     ```sh
-    http://localhost:5173/
+    http://localhost:5173
     ```
 
